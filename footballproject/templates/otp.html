@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="container height-50 d-flex justify-content-center align-items-center">
+  <div class="position-relative">
+    <div class="text-center">
+      <h6>Please enter the one time password <br> to verify your account</h6>
+      <div>
+        <span>A code has been sent to your registered mobile number</span>
+      </div>
+      <form method="post" action="otp">
+        {% csrf_token %}
+        <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+          <input class="m-2 text-center form-control rounded" type="text" name="first" id="first" maxlength="1" autofocus=""/>
+          <input class="m-2 text-center form-control rounded" type="text" name="second" id="second" maxlength="1" />
+          <input class="m-2 text-center form-control rounded" type="text" name="third" id="third" maxlength="1" />
+          <input class="m-2 text-center form-control rounded" type="text" name="fourth" id="fourth" maxlength="1" />
+        </div>
+
+                  <div class="card-2"> <div class="content d-flex justify-content-center align-items-center">
+                <span>Didn't get the code</span> <a href="{% url 'resendotp' %}" class="text-decoration-none ms-3">resend otp</a>
+                    </div>
+                  </div>
+                    <br>
+                    <div class="mt-4"> <button type="submit" class="btn btn-danger px-4 validate">Validate</button>
+                    </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#first').on('input', function() {
+    var firstVal = $(this).val();
+    if (firstVal.length === 1) {
+      $('#second').focus();
+    }
+  });
+
+  $('#second').on('input', function() {
+    var secondVal = $(this).val();
+    if (secondVal.length === 1) {
+      $('#third').focus();
+    }
+  });
+
+  $('#third').on('input', function() {
+    var thirdVal = $(this).val();
+    if (thirdVal.length === 1) {
+      $('#fourth').focus();
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+
+
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+    {{ message }}
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

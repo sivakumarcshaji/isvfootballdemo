@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+<div class="col">
+    <div class="center" style=" display: flex;justify-content: center; align-items: center; height: 200px;">
+    <form action="login" method="post">
+    {% csrf_token %}
+        <div>
+       {{ logform.phone_number}}
+            </div>
+        <br>
+  <button type="submit" class="btn btn-outline-warning"  >login</button>
+</form>
+        </div>
+</div>
+<div class="col d-flex justify-content-center" >
+    <h6 class="text-center text-primary-emphasis">New here ?.... click for signup</h6>
+    <div class="center" style=" display: flex;justify-content: center; align-items: center; height: 200px;">
+<form action="{% url 'signup' %}">
+  <button type="submit" class="btn btn-outline-success"> signup</button>
+
+</form>
+        </div>
+    </div>
+</div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container col-6">
+<form method="post" action="saveuser">
+    {% csrf_token %}
+    <div>
+        {{ form.username}}
+    </div>
+    <br>
+    <div>
+{{ form.emailid}}
+        </div>
+    <br>
+    <div >
+
+        {{ form.phone_number}}
+    </div>
+    <br>
+    <div>
+    <button type="submit" class="btn btn-primary btn-lg">submit</button>
+    </div>
+</form>
+<br>
+<form action="logpage" class="pb-4">
+
+    <button type="submit"  class="btn btn-success btn-lg"> login</button>
+</form>
+</div>
+{% endblock %}
